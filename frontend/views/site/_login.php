@@ -2,11 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/**
- * @var yii\web\View $this
- * @var yii\widgets\ActiveForm $form
- * @var \common\models\LoginForm $model
- */
+
 ?>
 <!-- modal dialog for display pop up login -->
 <div class="modal-dialog our-modal-dialog">
