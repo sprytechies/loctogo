@@ -12,6 +12,8 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\User;
+
 
 /**
  * Site controller
@@ -55,6 +57,13 @@ class SiteController extends Controller
     public function actions()
     {
         return [
+            /** using authclient for performing action
+             * by using AuthAction class
+             */
+             'auth' => [
+            'class' => 'yii\authclient\AuthAction',
+            'successCallback' => [$this, 'successCallback'],
+             ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
@@ -64,27 +73,53 @@ class SiteController extends Controller
             ],
         ];
     }
+    /** successCallback for getting credentials of 
+     * user by login and used in application by saving into
+     * database.
+     * @param type $client
+     * @return type
+     */
+       public function successCallback($client)
+       {
+            $attributes = $client->getUserAttributes();
+            $user = new SignupForm;
+            $user->username=$attributes['first_name'];
+            $user->password=microtime().$attributes['first_name'];
+            $user->email=$attributes['email'];
+            if (!\Yii::$app->user->isGuest) {
+             if (Yii::$app->getUser()->login($user->username)) {
+                    return $this->goHome();
+                }
+            }
+            else {
+                $signup = $user->signup();
+                 if($signup) {
+                    if (Yii::$app->getUser()->login($signup)) {
+                        return $this->goHome();
+                }
+            }
+            }
+       }
 
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
-
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+        public function actionIndex()
+        {
+            return $this->render('index');
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+        public function actionLogin()
+        {
+            if (!\Yii::$app->user->isGuest) {
+                return $this->goHome();
+            }
+            $model = new LoginForm();
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->goBack();
+            } else {
+                return $this->renderAjax('_login', [
+                    'model' => $model,
+                ]);
+            }
         }
-    }
 
     public function actionLogout()
     {
@@ -120,7 +155,8 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
+            $user = $model->signup();
+            if ($user) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
@@ -132,7 +168,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionRequestPasswordReset()
+    public function actionRepassword()
     {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
