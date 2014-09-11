@@ -16,6 +16,19 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        /** enable authclient extension for providing login with
+         * facebook (social site login credentials).
+         */ 
+        'authClientCollection' => [
+        'class' => 'yii\authclient\Collection',
+        'clients' => [
+         'facebook' => [
+                'class' => 'yii\authclient\clients\Facebook',
+                'clientId' => '270184156513671',
+                'clientSecret' => '74956fba25889897cf4e18edb9ad416e',
+            ],
+        ],
+    ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
