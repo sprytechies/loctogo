@@ -16,6 +16,7 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        
         /** enable authclient extension for providing login with
          * facebook (social site login credentials).
          */ 
