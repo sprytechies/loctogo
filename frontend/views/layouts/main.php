@@ -5,6 +5,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use yii\widgets\ActiveForm;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -20,9 +21,10 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <?= Html::csrfMetaTags() ?>
 </head>
 <body>
-    <?php $this->beginBody() ?>
+     <?php $this->beginBody() ?>
     <div class="wrap">
         <?php
             NavBar::begin([
@@ -37,10 +39,14 @@ AppAsset::register($this);
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
-            if (Yii::$app->user->isGuest) {
+             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
+                $menuItems[] = ['label' => 'login',
+                    'linkOptions' => ['id' => 'clickme',
+                        'onClick'=>'login(); return false;',
+                        ]];
+                } 
+            else {
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
@@ -55,10 +61,8 @@ AppAsset::register($this);
         ?>
 
         <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            </div>
         <?= $content ?>
         </div>
     </div>
@@ -69,7 +73,21 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
-
+    <!-- script for show pop up on login link -->
+    <script>
+                   function login(){
+                    $.ajax({
+                        type:'POST',
+                        url:'index.php?r=site/login',
+                        success: function(data)
+                        {
+                           $('#myModal').html(data);
+                           $('#myModal').modal();
+                        }
+                    });
+                   return false;
+                   }
+              </script>
     <?php $this->endBody() ?>
 </body>
 </html>
