@@ -1,0 +1,70 @@
+{
+    "name": "Loctogo",
+    "description": "Find best things to do at a place.",
+    "keywords": ["location", "best things", "to do"],
+    "homepage": "http://www.loctogo.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "dev",
+   "require": {
+       "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-authclient": "*",
+        "yiisoft/yii2-elasticsearch": "*",
+        "yiisoft/yii2-faker": "*",
+        "yiisoft/yii2-imagine": "*",
+        "yiisoft/yii2-redis": "*",
+        "yiisoft/yii2-coding-standards": "*",
+        "yiisoft/yii2-twig": "*",
+        "garetjax/phpbrowscap": "*",
+        "geoip2/geoip2": "*",
+        "mpdf/mpdf": "*",
+        "phpoffice/phpexcel": "*",
+        "asofter/yii2-imperavi-redactor": "*",
+        "phpspec/php-diff": "*",
+        "phpdocumentor/reflection": "*",
+        "yiisoft/yii2-apidoc": "*",
+        "chrisboulton/php-resque": "1.2.x"
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "suggest": {
+        "codeception/codeception": "Codeception, 2.0.* is currently works well with Yii.",
+        "codeception/specify": "BDD style code blocks for PHPUnit and Codeception",
+        "codeception/verify": "BDD Assertions for PHPUnit and Codeception",
+        "yiisoft/yii2-faker": "Fixtures generator for Yii2 based on Faker lib"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::setPermission"
+        ]
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "writable": [
+            "backend/runtime",
+            "backend/web/assets",
+
+            "console/runtime",
+            "console/migrations",
+
+            "frontend/runtime",
+            "frontend/web/assets"
+        ]
+    }
+}
