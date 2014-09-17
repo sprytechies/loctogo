@@ -217,9 +217,7 @@
     font-style: normal;
 
 }
-
 html,
-
 body {
         height: 100%;
         line-height: 20px;
@@ -378,11 +376,15 @@ input[type="text"],input[type="password"]{
 .alert-danger{display:none;}
 .has-error .alert-danger{display:block;}
 
-/*update on 17sept. 2014*/
-.navbar-brand{
+/***Dashboard***/
+.section-background{
+    padding: 15px;
+    background-color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 2px 1px rgba(84,84,84,0.1);
+    -moz-box-shadow: 0 2px 1px rgba(84,84,84,0.1);
+    box-shadow: 0 2px 1px rgba(84,84,84,0.1);
+}
 
-    font-size:25px;
-}
-.navbar-inverse .navbar-brand{
-    color:#fff;
-}
