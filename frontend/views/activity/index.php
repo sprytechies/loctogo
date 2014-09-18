@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>activity/index</h1>
+<h3>Activity</h3>
 
 <p>
     You may change the content of this page by modifying

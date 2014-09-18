@@ -63,7 +63,7 @@ AppAsset::register($this);
         <div class="container">
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             </div>
-        <?= $content ?>
+            <?= $content ?>
         </div>
     </div>
 
@@ -75,19 +75,19 @@ AppAsset::register($this);
     </footer>
     <!-- script for show pop up on login link -->
     <script>
-                   function login(){
-                    $.ajax({
-                        type:'POST',
-                        url:'index.php?r=site/login',
-                        success: function(data)
-                        {
-                           $('#myModal').html(data);
-                           $('#myModal').modal();
-                        }
-                    });
-                   return false;
-                   }
-              </script>
+        function login(){
+            $.ajax({
+                type:'POST',
+                url:'index.php?r=site/login',
+                success: function(data)
+                {
+                   $('#myModal').html(data);
+                   $('#myModal').modal();
+                }
+            });
+           return false;
+        }
+   </script>
     <?php $this->endBody() ?>
 </body>
 </html>

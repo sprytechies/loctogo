@@ -1,9 +1,13 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>dashboard/index</h1>
-
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="sidebar-module section-background">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+        </div>
+    </div>
+    <div class="col-sm-8 section-background">
+    </div>
+</div>

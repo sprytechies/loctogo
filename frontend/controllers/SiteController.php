@@ -79,47 +79,47 @@ class SiteController extends Controller
      * @param type $client
      * @return type
      */
-       public function successCallback($client)
-       {
-            $attributes = $client->getUserAttributes();
-            $user = new SignupForm;
-            $user->username=$attributes['first_name'];
-            $user->password=microtime().$attributes['first_name'];
-            $user->email=$attributes['email'];
-            if (!\Yii::$app->user->isGuest) {
-             if (Yii::$app->getUser()->login($user->username)) {
-                    return $this->goHome();
-                }
-            }
-            else {
-                $signup = $user->signup();
-                 if($signup) {
-                    if (Yii::$app->getUser()->login($signup)) {
-                        return $this->goHome();
-                }
-            }
-            }
-       }
-
-        public function actionIndex()
-        {
-            return $this->render('index');
-        }
-
-        public function actionLogin()
-        {
-            if (!\Yii::$app->user->isGuest) {
+   public function successCallback($client)
+   {
+        $attributes = $client->getUserAttributes();
+        $user = new SignupForm;
+        $user->username=$attributes['first_name'];
+        $user->password=microtime().$attributes['first_name'];
+        $user->email=$attributes['email'];
+        if (!\Yii::$app->user->isGuest) {
+         if (Yii::$app->getUser()->login($user->username)) {
                 return $this->goHome();
             }
-            $model = new LoginForm();
-            if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->goBack();
-            } else {
-                return $this->renderAjax('_login', [
-                    'model' => $model,
-                ]);
+        }
+        else {
+            $signup = $user->signup();
+             if($signup) {
+                if (Yii::$app->getUser()->login($signup)) {
+                    return $this->goHome();
             }
         }
+        }
+   }
+
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
+    public function actionLogin()
+    {
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            return $this->renderAjax('_login', [
+                'model' => $model,
+            ]);
+        }
+    }
 
     public function actionLogout()
     {
