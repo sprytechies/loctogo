@@ -21,24 +21,31 @@ return [
          * facebook (social site login credentials).
          */ 
         'authClientCollection' => [
-        'class' => 'yii\authclient\Collection',
-        'clients' => [
-         'facebook' => [
-                'class' => 'yii\authclient\clients\Facebook',
-                'clientId' => '270184156513671',
-                'clientSecret' => '74956fba25889897cf4e18edb9ad416e',
-            ],
-        ],
-    ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+             'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => '270184156513671',
+                    'clientSecret' => '74956fba25889897cf4e18edb9ad416e',
                 ],
             ],
         ],
+        'log' => [
+                'traceLevel' => YII_DEBUG ? 3 : 0,
+                'targets' => [
+                    [
+                        'class' => 'yii\log\FileTarget',
+                        'levels' => ['error', 'warning'],
+                    ],
+                ],
+            ],
+        'resque' => [ 
+            'class' => '\resque\RResque', 
+            'server' => 'localhost',     // Redis server address
+            'port' => '6379',            // Redis server port
+            'database' => 0,             // Redis database number
+            'password' => '',            // Redis password auth, set to '' or null when no auth needed
+        ], 
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

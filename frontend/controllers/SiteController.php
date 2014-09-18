@@ -9,7 +9,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+use frontend\components\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\User;
@@ -71,8 +71,10 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            
         ];
     }
+
     /** successCallback for getting credentials of 
      * user by login and used in application by saving into
      * database.
@@ -80,26 +82,27 @@ class SiteController extends Controller
      * @return type
      */
    public function successCallback($client)
-   {
-        $attributes = $client->getUserAttributes();
-        $user = new SignupForm;
-        $user->username=$attributes['first_name'];
-        $user->password=microtime().$attributes['first_name'];
-        $user->email=$attributes['email'];
-        if (!\Yii::$app->user->isGuest) {
-         if (Yii::$app->getUser()->login($user->username)) {
-                return $this->goHome();
-            }
-        }
-        else {
-            $signup = $user->signup();
-             if($signup) {
-                if (Yii::$app->getUser()->login($signup)) {
+       {
+           
+           // Controller::EVENT_BEFORE_ACTION;
+            $attributes = $client->getUserAttributes();
+            $user = new SignupForm;
+            $user->username=$attributes['first_name'];
+            $user->password=microtime().$attributes['first_name'];
+            $user->email=$attributes['email'];
+            if (!\Yii::$app->user->isGuest) {
+             if (Yii::$app->getUser()->login($user->username)) {
                     return $this->goHome();
+                }
+            }
+            else {
+                $signup = $user->signup();
+                 if($signup) {
+                    if (Yii::$app->getUser()->login($signup)) {
+                        return $this->goHome();
+                }
             }
         }
-        }
-   }
 
     public function actionIndex()
     {

@@ -1,8 +1,8 @@
 <?php
 
 namespace frontend\controllers;
-
-class DashboardController extends \yii\web\Controller
+use frontend\components\Controller;
+class DashboardController extends Controller
 {
     public function actionIndex()
     {

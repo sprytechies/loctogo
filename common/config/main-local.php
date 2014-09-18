@@ -7,6 +7,8 @@ return [
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8', 
+            'password' => '1234',
+            'charset' => 'utf8',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -50,6 +52,13 @@ return [
         'cache' => [
             'class' => 'yii\redis\Cache',
         ],
+        'resque' => [ 
+            'class' => '\resque\RResque', 
+            'server' => 'localhost',     // Redis server address
+            'port' => '6379',            // Redis server port
+            'database' => 0,             // Redis database number
+            'password' => '',            // Redis password auth, set to '' or null when no auth needed
+        ], 
         'session' => [
             'class' => 'yii\redis\Session',
         ],
