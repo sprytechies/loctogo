@@ -5,9 +5,9 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Analytics;
 use common\models\AnalyticsSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\components\Controller;
 
 /**
  * AnalyticsController implements the CRUD actions for Analytics model.

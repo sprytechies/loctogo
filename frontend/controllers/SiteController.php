@@ -9,7 +9,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
+use frontend\components\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\User;
@@ -71,16 +71,14 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            
         ];
     }
-    /** successCallback for getting credentials of 
-     * user by login and used in application by saving into
-     * database.
-     * @param type $client
-     * @return type
-     */
-       public function successCallback($client)
+    
+    public function successCallback($client)
        {
+           
+           // Controller::EVENT_BEFORE_ACTION;
             $attributes = $client->getUserAttributes();
             $user = new SignupForm;
             $user->username=$attributes['first_name'];
@@ -103,6 +101,7 @@ class SiteController extends Controller
 
         public function actionIndex()
         {
+            
             return $this->render('index');
         }
 

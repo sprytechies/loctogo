@@ -1,8 +1,8 @@
 <?php
 
 namespace frontend\controllers;
-
-class ActivityController extends \yii\web\Controller
+use frontend\components\Controller;
+class ActivityController extends Controller
 {
     public function actionIndex()
     {
