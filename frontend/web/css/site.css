@@ -377,7 +377,7 @@ input[type="text"],input[type="password"]{
 .has-error .alert-danger{display:block;}
 
 /***Dashboard***/
-.section-background{
+.section{
     padding: 15px;
     background-color: #fff;
     -webkit-border-radius: 3px;
