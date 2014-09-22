@@ -34,8 +34,7 @@ class Comments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idcomments'], 'required'],
-            [['idcomments', 'idtodo', 'iduser', 'parent'], 'integer'],
+            [['idtodo', 'iduser', 'parent'], 'integer'],
             [['description'], 'string'],
             [['cdate', 'mdate'], 'safe']
         ];
@@ -47,13 +46,13 @@ class Comments extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idcomments' => Yii::t('app', 'Idcomments'),
-            'idtodo' => Yii::t('app', 'Idtodo'),
-            'description' => Yii::t('app', 'Description'),
-            'iduser' => Yii::t('app', 'Iduser'),
-            'parent' => Yii::t('app', 'Parent'),
-            'cdate' => Yii::t('app', 'Cdate'),
-            'mdate' => Yii::t('app', 'Mdate'),
+            'idcomments' => 'Idcomments',
+            'idtodo' => 'Idtodo',
+            'description' => 'Description',
+            'iduser' => 'Iduser',
+            'parent' => 'Parent',
+            'cdate' => 'Cdate',
+            'mdate' => 'Mdate',
         ];
     }
 
