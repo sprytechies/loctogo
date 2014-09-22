@@ -387,4 +387,16 @@ input[type="text"],input[type="password"]{
     -moz-box-shadow: 0 2px 1px rgba(84,84,84,0.1);
     box-shadow: 0 2px 1px rgba(84,84,84,0.1);
 }
+.green{
+    background-color: #1abc9c;
+    float: right;
+    border-color: #1abc9c;
+    border-radius: 3px;
+    margin-top: 0px;
+    
+}
+.green:hover, .green:focus, .green:active{
+    background-color: #53ceb6;
+     border-color: #53ceb6;
+}
 
